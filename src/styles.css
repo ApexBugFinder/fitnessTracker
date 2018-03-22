@@ -2,8 +2,15 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 html, body {
-    font-family: 'Roboto, sans-serif'
+    /* font-family: 'Roboto, sans-serif'; */
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
 body{
     margin: 0;
+}
+.test-font-Roboto {
+    font-family: 'Roboto, sans-serif';
+}
+.test-font-IBM {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
 }

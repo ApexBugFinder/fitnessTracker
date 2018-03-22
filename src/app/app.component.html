@@ -23,8 +23,17 @@
     
     
     
-    <mat-sidenav-content>
-        <mat-toolbar color="primary">My Toolbar</mat-toolbar>
+    <mat-sidenav-content fxLayoutGap="15px">
+        <mat-toolbar color="primary" class="test-font-Roboto" fxLayoutGap="15px">
+            <div class=""><button (click)="sidenav.toggle()">Toggle Sidenav</button></div>
+            <div class="">LOGO</div>
+            <div fxLayoutGap="15px">
+                <a routerLink="/signup">Signup</a>
+                <a routerLink="/login">Login</a>
+                <a routerLink="/training">Training</a>
+            </div>
+
+        </mat-toolbar>
         <main>
             <router-outlet></router-outlet>
         </main>
