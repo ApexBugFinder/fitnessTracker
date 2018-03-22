@@ -22,23 +22,73 @@
     </mat-sidenav>
     
     
-    
-    <mat-sidenav-content fxLayoutGap="15px">
-        <mat-toolbar color="primary" class="test-font-Roboto" fxLayoutGap="15px">
-            <div class=""><button (click)="sidenav.toggle()">Toggle Sidenav</button></div>
-            <div class="">LOGO</div>
-            <div fxLayoutGap="15px">
-                <a routerLink="/signup">Signup</a>
-                <a routerLink="/login">Login</a>
-                <a routerLink="/training">Training</a>
-            </div>
+<!-- Using anchors with fxFlex box approach to push anchors to the right side of row
+    Default of fxLayout is fxLayout="row" 
+        fxLayoutAlign = "flex-end"  pushes the anchors to the right side
+        This can also be done by creating an empty div that is an fxFlex box
+         so that it picks up the extra space and pushes content to the right-->
+  
+  <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+        <!-- <mat-sidenav-content fxLayoutGap="15px">
+            <mat-toolbar color="primary" class="test-font-Roboto" fxLayoutGap="15px">
+                <div class="">
+                    <button mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon>menu</mat-icon>
+        
+                    </button>
+                </div>
+                <div>LOGO</div> -->
+                <!-- <div fxFlex></div> -->
+                <!-- <div fxFlex fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="flex-end">
+                    <a routerLink="/signup">Signup</a>
+                    <a routerLink="/login">Login</a>
+                    <a routerLink="/training">Training</a>
+                </div>
+        
+            </mat-toolbar>
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+            <button (click)="sidenav.toggle()">Show SideNav</button>
+        
+        </mat-sidenav-content> -->
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
 
+
+
+<!-- Using unordered list items for the toolbar  -->
+
+
+<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+<mat-sidenav-content fxLayoutGap="15px">
+        <mat-toolbar color="primary" class="test-font-Roboto" fxLayoutGap="15px">
+            <div class="">
+                <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+    
+                </button>
+            </div>
+            <div><a routerLink="/">LOGO</a></div>
+            <!-- <div fxFlex></div> -->
+            <div fxFlex fxLaout fxLayoutAlign="flex-end">
+                <ul fxLayout fxLayoutGap="15px"class="navigation-items">
+                    <li>
+                        <a routerLink="/signup">Signup</a>
+                    </li>
+                    <li>
+                        <a routerLink="/login">Login</a>
+                    </li>
+                    <li>
+                        <a routerLink="/training">Training</a>
+                    </li>
+                </ul>
+            </div>
         </mat-toolbar>
         <main>
             <router-outlet></router-outlet>
         </main>
-        <button (click)="sidenav.toggle()">Show SideNav</button>
-        
+       
+    
     </mat-sidenav-content>
 
 
