@@ -18,7 +18,22 @@
     local reference -->
 
     <mat-sidenav #sidenav role="navigation">
-        <p>I'm the sidenav!</p>
+        
+        <div color="primary" fxFlex>
+            <div fxFlex style="border-right:1px white solid">
+                <ul fxLayout="column" fxLayoutAlign="flex-start stretch"class="navigation-items">
+                    <li fxLayoutAlign="center center">
+                        <a routerLink="/signup">Signup</a>
+                    </li>
+                    <li fxLayoutAlign="center center">
+                        <a routerLink="/login">Login</a>
+                    </li>
+                    <li fxLayoutAlign="center center">
+                        <a routerLink="/training">Training</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </mat-sidenav>
     
     
@@ -62,7 +77,7 @@
 <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
 <mat-sidenav-content fxLayoutGap="15px">
         <mat-toolbar color="primary" class="test-font-Roboto" fxLayoutGap="15px">
-            <div class="">
+            <div fxHide.gt-xs>
                 <button mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon>menu</mat-icon>
     
@@ -70,7 +85,7 @@
             </div>
             <div><a routerLink="/">LOGO</a></div>
             <!-- <div fxFlex></div> -->
-            <div fxFlex fxLayout fxLayoutAlign="flex-end">
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
                 <ul fxLayout fxLayoutGap="15px"class="navigation-items">
                     <li>
                         <a routerLink="/signup">Signup</a>
