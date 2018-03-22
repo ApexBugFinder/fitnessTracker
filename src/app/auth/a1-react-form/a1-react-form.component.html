@@ -1,0 +1,59 @@
+<div class="panel-heading" fxLayoutAlign="start center">
+  <h2 >
+    <mat-icon>flight_takeoff</mat-icon>  Sign Up
+  </h2>
+</div>
+
+<form   
+  fxLayout="column" 
+  fxLayoutAlign="center center" 
+  [formGroup]="signupForm"
+  (ngSubmit)="onSubmit(f)">
+
+  <fieldset>
+  
+
+  <div formGroupName="emailGroup" fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field>
+      <div class="form-group">
+      <input matInput type="email" name="confirmEmail" id="confirmEmailId" formControlName="confirmEmail" placeholder="Confirmation Email">
+      <span class="help-block">
+      
+      <span *ngIf="confirmationMessage"> {{ confirmationMessage }} </span>
+      </span>
+    </div>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput type="email" name="email" id="emailId" formControlName="email" placeholder="Your email">
+      <mat-error *ngIf="emailMessage">{{ emailMessage }}</mat-error>
+    </mat-form-field>
+
+           
+     
+</div>
+  <mat-form-field>
+    <input 
+      type="password"
+      id="passwordId"
+      matInput
+      placeholder="Your Password"
+      name="password"
+      formControlName="password"
+     >
+  </mat-form-field>
+
+  <mat-checkbox name="agree" fxLayoutAlign="center center" required color="primary">
+    Agree to terms and conditions.
+  </mat-checkbox>
+
+  
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button id="submitBtnId" type="submit" fxLayout="row" align-items="center" fxLayoutAlign="center center" color="primary">Submit</button>
+  </div>
+  
+</fieldset>
+</form>
+
+ 
+
