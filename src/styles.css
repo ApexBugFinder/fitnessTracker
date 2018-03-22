@@ -4,9 +4,11 @@
 html, body {
     /* font-family: 'Roboto, sans-serif'; */
     font-family: 'IBM Plex Sans Condensed', sans-serif;
+    height: 100%;
 }
 body{
-    margin: 0;
+    margin: 0; 
+    
 }
 .test-font-Roboto {
     font-family: 'Roboto, sans-serif';
