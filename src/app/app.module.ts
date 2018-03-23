@@ -15,6 +15,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { A1ReactFormComponent } from './auth/a1-react-form/a1-react-form.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { A1ReactFormComponent } from './auth/a1-react-form/a1-react-form.compone
     NewTrainingComponent,
     PastTrainingComponent,
     WelcomeComponent,
-    A1ReactFormComponent
+    A1ReactFormComponent,
+    HeaderComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,
