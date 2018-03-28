@@ -1,3 +1,38 @@
-<p>
-  login works!
-</p>
+<section class="login-form">
+  <form 
+  fxLayout="column" 
+  fxLayoutAlign="center center" 
+  fxLayoutGap="10px"
+  fxFlex
+    [formGroup]="loginForm"
+    >
+    <fieldset>
+     <div fxLayout="column" 
+     fxLayoutAlign="center center" 
+     fxLayoutGap="10px"
+     fxFlex>
+      <mat-form-field>
+        <input type="email"
+          matInput
+          placeholder="Your Email" 
+          formControlName="email" 
+          name="email" id="emailId">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password"
+          matInput
+          placeholder="Your Password"
+          formControlName="password">
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button type="submit"
+          mat-raised-button 
+          id="submitBtnId" (click)="onSubmit()"
+          color="primary">Login</button>
+      </div>
+    </div> 
+    </fieldset>
+   
+  </form>
+</section>

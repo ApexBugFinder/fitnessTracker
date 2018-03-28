@@ -8,28 +8,29 @@
   fxLayout="column" 
   fxLayoutAlign="center center" 
   [formGroup]="signupForm"
-  (ngSubmit)="onSubmit(f)">
+  
+  >
 
   <fieldset>
   
 
   <div formGroupName="emailGroup" fxLayout="column" fxLayoutGap="10px">
-    <mat-form-field>
-      <div class="form-group">
-      <input matInput type="email" name="confirmEmail" id="confirmEmailId" formControlName="confirmEmail" placeholder="Confirmation Email">
-      <span class="help-block">
-      
-      <span *ngIf="confirmationMessage"> {{ confirmationMessage }} </span>
-      </span>
-    </div>
-    </mat-form-field>
+    
     
     <mat-form-field>
       <input matInput type="email" name="email" id="emailId" formControlName="email" placeholder="Your email">
       <mat-error *ngIf="emailMessage">{{ emailMessage }}</mat-error>
     </mat-form-field>
-
-           
+    
+    <mat-form-field>
+      <div class="form-group">
+        <input matInput type="email" name="confirmEmail" id="confirmEmailId" formControlName="confirmEmail" placeholder="Confirmation Email">
+        <span class="help-block">
+    
+          <span *ngIf="confirmationMessage"> {{ confirmationMessage }} </span>
+        </span>
+      </div>
+    </mat-form-field>
      
 </div>
   <mat-form-field>
