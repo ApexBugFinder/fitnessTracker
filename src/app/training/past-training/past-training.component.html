@@ -1,3 +1,56 @@
-<p>
-  past-training works!
-</p>
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      <div class="tooltip">
+        <i class="material-icons headerIcon">date_range</i>
+        <span class="tooltiptext">Date</span>
+      </div>
+    
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header >
+      <div class="tooltip">
+        <i class="material-icons headerIcon" >assignment_ind</i>
+        <span class="tooltiptext">Name</span>
+      </div>
+      
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="calories">
+    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayout="column" fxLayoutAlign="start start">
+      <div class="tooltip">
+        <i class="material-icons headerIcon">signal_cellular_null</i>
+        <span class="tooltiptext" >Calories</span>
+      </div>
+      
+     </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.calories | number }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="duration" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      <div class="tooltip">
+        <i class="material-icons headerIcon">schedule</i>
+        <span class="tooltiptext">Duration</span>
+      </div> 
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.duration | number }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="state">
+    <mat-header-cell *matHeaderCellDef mat-sort-header >
+      <div class="tooltip">
+        <i class="material-icons headerIcon">flag</i>
+        <span class="tooltiptext">State</span>
+      </div>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.state }}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+</mat-table>

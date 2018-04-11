@@ -54,4 +54,9 @@ cancelExercise(progress: number) {
          this.runningExercise = null;
          this.exerciseChanged.next(null);
 }
+
+getCompletedOrCancelledExercises(){
+    return this.exercises.slice();
+
+}
 }
