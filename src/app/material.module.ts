@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSidenav, MatListModule, MatTabsModule, MatCardModule, MatSelectModule, MatProgressSpinnerModule, MatDialogModule, MatSortModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSidenav, 
+          MatListModule, MatTabsModule, MatCardModule, MatSelectModule, MatProgressSpinnerModule, 
+          MatDialogModule, MatSortModule, MatPaginator, MatPaginatorModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule, MatTableModule } from '@angular/material';
@@ -25,7 +27,8 @@ import { MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarM
     MatProgressSpinnerModule,
     MatDialogModule, 
     MatTableModule, 
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule
   ],
  exports: [
    MatButtonModule,
@@ -45,7 +48,8 @@ import { MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarM
    MatProgressSpinnerModule,
    MatDialogModule,
    MatTableModule,
-   MatSortModule
+   MatSortModule,
+   MatPaginatorModule
  ]
 })
 export class MaterialModule { }
