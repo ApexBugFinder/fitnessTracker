@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule, AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -20,6 +25,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
+
 
 
 @NgModule({
@@ -44,7 +50,12 @@ import { TrainingService } from './training/training.service';
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireModule
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],

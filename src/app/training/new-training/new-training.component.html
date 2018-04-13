@@ -9,8 +9,8 @@
       <mat-form-field>
         <mat-select placeholder="Food" ngModel name="exercise" required>
           <mat-option  class="hovered"
-          [value]="exercise.id" 
-          *ngFor="let exercise of availableExercises">
+          *ngFor="let exercise of availableExercises"
+          [value]="exercise.id">
             {{ exercise.name }}
           </mat-option>
         
