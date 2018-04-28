@@ -34,12 +34,14 @@ export class TrainingService {
         this.dB.collection('availableExercises')
     .snapshotChanges()
     .map(docArray => {
-      return docArray.map(doc => {
-        return {
-          id: doc.payload.doc.id,
-          name: doc.payload.doc.data().name,
-          duration: doc.payload.doc.data().duration,
-          calories: doc.payload.doc.data().calories
+
+        // throw(new Error());
+          return docArray.map(doc => {
+            return {
+              name: doc.payload.doc.data().name,
+              id: doc.payload.doc.id,
+              duration: doc.payload.doc.data().duration,
+              calories: doc.payload.doc.data().calories
 
 
         };
@@ -49,7 +51,9 @@ export class TrainingService {
         this.exercisesChanged.next([...this.availableExercises]);
         this.uiService.loadingStateChanged.next(false);
     }, error => {
+        this.uiService.showSnackBar('Fetching Excerises failed, please try again later', null, 3000);
         this.uiService.loadingStateChanged.next(false);
+        this.exercisesChanged.next(null);
         console.log(error);
     }));
     // copies objects
