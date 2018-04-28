@@ -2,6 +2,10 @@ import { Exercise } from "./exercise.model";
 import {Injectable} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Subscription } from 'rxjs';
+import { error } from "util";
+import { UIService } from "../shared/ui.service";
+
 
 @Injectable()
 export class TrainingService {
@@ -12,14 +16,21 @@ export class TrainingService {
       { id: 'burpees', name: 'Burpees', duration: 60, calories: 8}    
     ];
 
-    constructor(private dB: AngularFirestore) {}
+    private fbSubs: Subscription[] = [];
     exerciseChanged = new Subject<Exercise>();
     exercisesChanged = new Subject<Exercise[]>();
     finishedExercisesChanged = new Subject<Exercise[]>();
     private runningExercise: Exercise;
+    
+    constructor(private dB: AngularFirestore, private uiService: UIService) {}
 
+    
+
+  
     fetchAvailableExercises() {
-
+        this.uiService.loadingStateChanged.next(true);
+        console.log('hi');
+        this.fbSubs.push(
         this.dB.collection('availableExercises')
     .snapshotChanges()
     .map(docArray => {
@@ -36,31 +47,34 @@ export class TrainingService {
     }).subscribe((exercises: Exercise[]) => {
         this.availableExercises = exercises;
         this.exercisesChanged.next([...this.availableExercises]);
-      
-    });
+        this.uiService.loadingStateChanged.next(false);
+    }, error => {
+        this.uiService.loadingStateChanged.next(false);
+        console.log(error);
+    }));
     // copies objects
     // return { ...this.availableExercises};
     // copies arrays
     // return this.availableExercises.slice();
-}
+    }
 
-startExercise(selectedId: string) {
-    // this.dB.doc('availableExercises/' + selectedId).update({lastSelected: new Date()});
-    this.runningExercise = this.availableExercises.find(ex => ex.id == selectedId);
-    console.log('Start Exercise: ' + this.runningExercise);
-    this.exerciseChanged.next({...this.runningExercise});
-}
+    startExercise(selectedId: string) {
+        // this.dB.doc('availableExercises/' + selectedId).update({lastSelected: new Date()});
+        this.runningExercise = this.availableExercises.find(ex => ex.id == selectedId);
+        console.log('Start Exercise: ' + this.runningExercise);
+        this.exerciseChanged.next({...this.runningExercise});
+    }
 
-getRunningExercise() {
-    return { ...this.runningExercise};
-}
+    getRunningExercise() {
+        return { ...this.runningExercise};
+    }
 
-completeExercise() {
-    this.addDataToDatabase({...this.runningExercise, date: new Date(), state: 'completed'});
-    this.runningExercise = null;
-    this.exerciseChanged.next(null);
+    completeExercise() {
+        this.addDataToDatabase({...this.runningExercise, date: new Date(), state: 'completed'});
+        this.runningExercise = null;
+        this.exerciseChanged.next(null);
 
-}
+    }
     cancelExercise(progress: number) {
         this.addDataToDatabase({
                 ...this.runningExercise, 
@@ -76,15 +90,21 @@ completeExercise() {
     }
 
     fetchCompletedOrCancelledExercises(){
-        this.dB.collection('finishedExercises')
+        this.fbSubs.push(this.dB.collection('finishedExercises')
             .valueChanges()
             .subscribe((exercises: Exercise[]) => {
                 this.finishedExercisesChanged.next(exercises);
-            });
+            }, error => {
+                console.log(error);
+            }));
 
     }
 
     private addDataToDatabase(exercise: Exercise) {
         this.dB.collection('finishedExercises').add(exercise);
+    }
+
+    cancelSubscriptions() {
+        this.fbSubs.forEach(sub => sub.unsubscribe());
     }
 }

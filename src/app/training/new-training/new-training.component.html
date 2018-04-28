@@ -4,9 +4,9 @@
   <mat-card fxFlex.xs="100%" fxFlex="400px">
     <mat-card-title fxLayoutAlign="center">Time to start a workout!</mat-card-title>
     
-    <mat-card-content fxLayoutAlign="center">
+    <mat-card-content  fxLayoutAlign="center">
     
-      <mat-form-field>
+      <mat-form-field *ngIf="!isLoading">
         <mat-select placeholder="Food" ngModel name="exercise" required>
           <mat-option  class="hovered"
           *ngFor="let exercise of availableExercises"
@@ -18,9 +18,13 @@
       </mat-form-field>
     </mat-card-content>
     
-    <mat-card-actions fxLayoutAlign="center">
+    <mat-card-actions *ngIf="!isLoading" fxLayoutAlign="center">
       <button color="primary" mat-raised-button type="submit" [disabled]="f.invalid" >Start</button>
     </mat-card-actions>
+    <div fxLayoutAlign="center">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
   </mat-card>
+  
 </form>
 </section>

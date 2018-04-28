@@ -17,22 +17,29 @@
           placeholder="Your Email" 
           formControlName="email" 
           name="email" id="emailId">
+          <mat-hint>Please enter login email address</mat-hint>
+          <mat-error>Invalid or missing email.</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input type="password"
           matInput
           placeholder="Your Password"
           formControlName="password">
+          <mat-hint>Please enter your password</mat-hint>
+          <mat-error>Missing password.</mat-error>
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutAlign="center center">
-        <button type="submit"
+        <button *ngIf="!isLoading" type="submit"
           mat-raised-button 
           id="submitBtnId" (click)="onSubmit()"
           color="primary">Login</button>
-      </div>
-    </div> 
+          <mat-spinner *ngIf="isLoading"></mat-spinner> 
+      </div> 
+      
+    </div>
+    
     </fieldset>
-   
+  
   </form>
 </section>
