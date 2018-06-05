@@ -36,7 +36,7 @@ export class TrainingService {
     .map(docArray => {
 
         // throw(new Error());
-          return docArray.map(doc => {
+         return docArray.map(doc => {
             return {
               name: doc.payload.doc.data().name,
               id: doc.payload.doc.id,
@@ -44,7 +44,7 @@ export class TrainingService {
               calories: doc.payload.doc.data().calories
 
 
-        };
+         };
       });
     }).subscribe((exercises: Exercise[]) => {
         this.availableExercises = exercises;
