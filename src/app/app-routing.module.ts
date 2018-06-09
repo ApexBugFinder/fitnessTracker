@@ -5,9 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
-import { TrainingComponent } from './training/training.component';
 import { A1ReactFormComponent } from './auth/a1-react-form/a1-react-form.component';
 import { AuthGuard } from './auth/auth-guard';
+import { TrainingModule } from './training/training.module';
 
 
 
@@ -15,8 +15,8 @@ import { AuthGuard } from './auth/auth-guard';
 
 const routes: Routes = [
     { path: '', component: WelcomeComponent },
-
-    { path: 'training', component: TrainingComponent, canActivate: [AuthGuard] }
+    { path: 'training', loadChildren: () => TrainingModule }
+  
 ];
 
 @NgModule({

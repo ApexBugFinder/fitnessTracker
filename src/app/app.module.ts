@@ -25,7 +25,6 @@ import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module'; 
-import { TrainingModule } from './training/training.module';
 
 
 
@@ -47,7 +46,7 @@ import { TrainingModule } from './training/training.module';
     AngularFireStorageModule,
     AngularFireModule,
     AuthModule,
-    TrainingModule
+    AngularFirestoreModule
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent]
