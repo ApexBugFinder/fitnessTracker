@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// Components 
+// Components
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -23,4 +23,4 @@ const routes: Routes = [
     exports: [ RouterModule ],
     providers: [AuthGuard]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
