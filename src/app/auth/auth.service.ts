@@ -38,7 +38,7 @@ export class AuthService {
                 this.authChange.next(false);
                 this.router.navigate(['/login']);
             }
-        })
+        });
     }
     registerUser(authData: AuthData) {
         // uiService

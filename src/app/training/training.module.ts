@@ -13,13 +13,12 @@ import { SharedModule } from '../shared/shared.module';
 import { TrainingRoutingModule } from './training-routing.module';
 
 @NgModule({
-    declarations: [ 
-        CurrentTrainingComponent, 
+    declarations: [
+        CurrentTrainingComponent,
         NewTrainingComponent,
         PastTrainingComponent,
         TrainingComponent,
-        StopTrainingComponent,
-        
+        StopTrainingComponent
         ],
     imports: [
         SharedModule,

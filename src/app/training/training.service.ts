@@ -13,7 +13,7 @@ export class TrainingService {
       { id: 'crunches', name: 'Crunches', duration: 30, calories: 8},
       { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15},
       { id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 18},
-      { id: 'burpees', name: 'Burpees', duration: 60, calories: 8}    
+      { id: 'burpees', name: 'Burpees', duration: 60, calories: 8}
     ];
 
     private fbSubs: Subscription[] = [];
@@ -21,12 +21,10 @@ export class TrainingService {
     exercisesChanged = new Subject<Exercise[]>();
     finishedExercisesChanged = new Subject<Exercise[]>();
     private runningExercise: Exercise;
-    
+
     constructor(private dB: AngularFirestore, private uiService: UIService) {}
 
-    
 
-  
     fetchAvailableExercises() {
         this.uiService.loadingStateChanged.next(true);
         console.log('hi');
@@ -81,8 +79,8 @@ export class TrainingService {
     }
     cancelExercise(progress: number) {
         this.addDataToDatabase({
-                ...this.runningExercise, 
-                date: new Date(), 
+                ...this.runningExercise,
+                date: new Date(),
                 state: 'cancelled',
                 duration: this.runningExercise.duration * (progress / 100)  ,
                 calories:  this.runningExercise.calories * (progress / 100)
@@ -93,7 +91,7 @@ export class TrainingService {
             this.exerciseChanged.next(null);
     }
 
-    fetchCompletedOrCancelledExercises(){
+    fetchCompletedOrCancelledExercises() {
         this.fbSubs.push(this.dB.collection('finishedExercises')
             .valueChanges()
             .subscribe((exercises: Exercise[]) => {
