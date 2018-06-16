@@ -34,14 +34,12 @@ import { AuthModule } from './auth/auth.module';
     WelcomeComponent,
     HeaderComponent,
     SidenavListComponent,
-  
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-   
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireModule,
