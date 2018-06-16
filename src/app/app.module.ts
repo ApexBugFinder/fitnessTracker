@@ -8,6 +8,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireStorageModule, AngularFireStorage } from 'angularfire2/storage';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { TrainingComponent } from './training/training.component';
@@ -24,7 +25,8 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import { UIService } from './shared/ui.service';
-import { AuthModule } from './auth/auth.module'; 
+import { AuthModule } from './auth/auth.module';
+import { appReducer } from './app.reducer';
 
 
 
@@ -44,7 +46,8 @@ import { AuthModule } from './auth/auth.module';
     AngularFireStorageModule,
     AngularFireModule,
     AuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    StoreModule.forRoot({ui: appReducer})
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent]
