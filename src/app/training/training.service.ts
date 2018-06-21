@@ -1,10 +1,13 @@
-import { Exercise } from "./exercise.model";
+import { Exercise } from './exercise.model';
 import {Injectable} from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Subscription } from 'rxjs';
-import { error } from "util";
-import { UIService } from "../shared/ui.service";
+import { Subscription } from 'rxjs/Subscription';
+import { error } from 'util';
+import { UIService } from '../shared/ui.service';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../app.reducer';
+import * as UI from '../shared/ui.actions';
 
 
 @Injectable()
@@ -22,11 +25,13 @@ export class TrainingService {
     finishedExercisesChanged = new Subject<Exercise[]>();
     private runningExercise: Exercise;
 
-    constructor(private dB: AngularFirestore, private uiService: UIService) {}
+    constructor(private dB: AngularFirestore,
+                private uiService: UIService,
+                private store: Store<fromRoot.State>) {}
 
 
     fetchAvailableExercises() {
-        this.uiService.loadingStateChanged.next(true);
+        this.store.dispatch(new UI.StartLoading());
         console.log('hi');
         this.fbSubs.push(
         this.dB.collection('availableExercises')
@@ -47,10 +52,12 @@ export class TrainingService {
     }).subscribe((exercises: Exercise[]) => {
         this.availableExercises = exercises;
         this.exercisesChanged.next([...this.availableExercises]);
-        this.uiService.loadingStateChanged.next(false);
+       // this.uiService.loadingStateChanged.next(false);
+       this.store.dispatch(new UI.StopLoading());
     }, error => {
         this.uiService.showSnackBar('Fetching Excerises failed, please try again later', null, 3000);
-        this.uiService.loadingStateChanged.next(false);
+        // this.uiService.loadingStateChanged.next(false);
+        this.store.dispatch(new UI.StopLoading());
         this.exercisesChanged.next(null);
         console.log(error);
     }));
@@ -62,7 +69,7 @@ export class TrainingService {
 
     startExercise(selectedId: string) {
         // this.dB.doc('availableExercises/' + selectedId).update({lastSelected: new Date()});
-        this.runningExercise = this.availableExercises.find(ex => ex.id == selectedId);
+        this.runningExercise = this.availableExercises.find(ex => ex.id === selectedId);
         console.log('Start Exercise: ' + this.runningExercise);
         this.exerciseChanged.next({...this.runningExercise});
     }

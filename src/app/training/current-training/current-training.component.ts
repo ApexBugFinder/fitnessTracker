@@ -11,10 +11,10 @@ import { TrainingService } from '../training.service';
 })
 export class CurrentTrainingComponent implements OnInit {
   progress = 0;
-  
+
   timer: number;
 
-  
+
   constructor(private dialog: MatDialog, private trainingService: TrainingService) { }
 
 
@@ -31,9 +31,9 @@ export class CurrentTrainingComponent implements OnInit {
         progress: this.progress
       }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result); 
+      console.log(result);
 
       if (result) {
       this.trainingService.cancelExercise(this.progress);
