@@ -8,7 +8,8 @@ import { TrainingService } from '../training/training.service';
 import { UIService } from '../shared/ui.service';
 import { Store } from '@ngrx/store';
 // imports everything from the app.Reducer file and can be access through fromApp
-import * as fromApp from '../app.reducer';
+import * as fromRoot from '../app.reducer';
+import * as UI from '../shared/ui.actions';
 
 
 
@@ -24,7 +25,7 @@ export class AuthService {
         private trainingService: TrainingService,
         private uiService: UIService,
         // added access to global store
-        private store: Store<{ui: fromApp.State}>) {}
+        private store: Store<{ui: fromRoot.State}>) {}
 
     initAuthListener() {
         this.afAuth.authState.subscribe(user => {
@@ -44,7 +45,7 @@ export class AuthService {
         // uiService
         // this.uiService.loadingStateChanged.next(true);
         // using redux managed slice to dispatch/tell all parties that the state has changed
-        this.store.dispatch({type: 'START_LOADING'});
+        this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.createUserWithEmailAndPassword(
             authData.email,
             authData.password
@@ -54,25 +55,26 @@ export class AuthService {
             // using redux's ui managed state in the appReducer store, everyone listening
             // to the store will hear the false boolean emitted by the case STOP_LOADING case
             // in the form of the isLoading property
-            this.store.dispatch({type: 'STOP_LOADING'});
+            this.store.dispatch(new UI.StopLoading());
             console.log(result);
         }).catch(error => {
-            this.uiService.loadingStateChanged.next(false);
+            // this.uiService.loadingStateChanged.next(false);
+            this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackBar(error.message, null, 3000);
         });
     }
 
 login(authData: AuthData) {
     // this.uiService.loadingStateChanged.next(true);
-    this.store.dispatch({type: 'START_LOADING'});
+    this.store.dispatch(new UI.StartLoading());
     this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
         .then(result => {
             // this.uiService.loadingStateChanged.next(false);
-            this.store.dispatch({type: 'STOP_LOADING'});
+            this.store.dispatch(new UI.StopLoading());
             console.log(result);
         }).catch(error => {
             // this.uiService.loadingStateChanged.next(false);
-            this.store.dispatch({type: 'STOP_LOADING'});
+            this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackBar(error.message, null, 3000);
         });
 }
