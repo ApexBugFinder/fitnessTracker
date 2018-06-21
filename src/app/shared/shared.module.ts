@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [],
-    imports: [ 
+    imports: [
         CommonModule,
         FormsModule,
         MaterialModule,
@@ -19,4 +19,4 @@ import { FormsModule } from '@angular/forms';
         FlexLayoutModule
     ]
 })
-export class SharedModule{}
+export class SharedModule {}

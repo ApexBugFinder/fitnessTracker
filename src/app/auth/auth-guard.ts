@@ -1,33 +1,21 @@
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanLoad, Route } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../app.reducer';
+import { take } from 'rxjs/operators';
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(
+                private router: Router,
+                private store: Store<fromRoot.State>) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-
-        // has to returns true or a Promise that 
-        // resolves to true or an Observable that resolves to true
-        
-        // return true;
-
-        // use the authService to check to see if there is a user logged in
-        // if there is then return the result from method which is a boolean
-        // if not isAuth is null and we will route the user to the login page
-        if (this.authService.isAuth()){
-        return this.authService.isAuth();
-        } else {
-            this.router.navigate(['/login']);
-        }
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        // returns boolean on whether user can use component that is protected by authGuard
+        return this.store.select(fromRoot.getIsAuth).pipe(take(1));
     }
-    canLoad(route: Route){
-        if (this.authService.isAuth()){
-            return this.authService.isAuth();
-            } else {
-                this.router.navigate(['/login']);
-            }
+    canLoad(route: Route) {
+        return this.store.select(fromRoot.getIsAuth).pipe(take(1));
     }
 }

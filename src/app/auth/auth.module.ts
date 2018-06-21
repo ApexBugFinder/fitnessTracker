@@ -13,16 +13,16 @@ import { AuthRoutingModule } from './auth-routing.module';
 
 
 @NgModule({
-    declarations: [ 
-        LoginComponent, 
+    declarations: [
+        LoginComponent,
         SignupComponent,
         A1ReactFormComponent
     ],
-    imports: [ 
+    imports: [
                 SharedModule,
                 ReactiveFormsModule,
                 SharedModule,
-                AngularFireAuthModule, 
+                AngularFireAuthModule,
                 AuthRoutingModule
             ],
     exports: []
