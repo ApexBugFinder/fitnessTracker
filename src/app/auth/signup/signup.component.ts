@@ -6,6 +6,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
+
+
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -21,9 +24,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
-    // this.loadingSubs = this.uiService.loadingStateChanged.subscribe(isLoading => {
-    //   this.isLoading = isLoading;
-    // });
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
@@ -36,9 +36,5 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy(){
-  //   if (this.loadingSubs){
-  //   this.loadingSubs.unsubscribe();
-  //   }
-  // }
+
 }
