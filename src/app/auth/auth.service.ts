@@ -23,7 +23,6 @@ export class AuthService {
         private afAuth: AngularFireAuth,
         private trainingService: TrainingService,
         private uiService: UIService,
-        // added access to global store
         private store: Store<{ ui: fromRoot.State }>) { }
 
     initAuthListener() {
@@ -39,8 +38,7 @@ export class AuthService {
         });
     }
     registerUser(authData: AuthData) {
-        // uiService
-        // this.uiService.loadingStateChanged.next(true);
+
         // using redux managed slice to dispatch/tell all parties that the state has changed
         this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.createUserWithEmailAndPassword(
@@ -55,22 +53,19 @@ export class AuthService {
             this.store.dispatch(new UI.StopLoading());
             console.log(result);
         }).catch(error => {
-            // this.uiService.loadingStateChanged.next(false);
+
             this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackBar(error.message, null, 3000);
         });
     }
 
     login(authData: AuthData) {
-        // this.uiService.loadingStateChanged.next(true);
         this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
             .then(result => {
-                // this.uiService.loadingStateChanged.next(false);
                 this.store.dispatch(new UI.StopLoading());
                 console.log(result);
             }).catch(error => {
-                // this.uiService.loadingStateChanged.next(false);
                 this.store.dispatch(new UI.StopLoading());
                 this.uiService.showSnackBar(error.message, null, 3000);
             });

@@ -42,12 +42,12 @@ export class CurrentTrainingComponent implements OnInit {
       console.log(result);
 
       if (result) {
-      this.trainingService.cancelExercise(this.progress);
+        this.trainingService.cancelExercise(this.progress);
       } else {
         this.startOrResumeTimer();
       }
-  });
-}
+    });
+  }
   startOrResumeTimer() {
     this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex => {
       const step = (ex.duration / 100) * 1000;

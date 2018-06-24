@@ -55,6 +55,7 @@ export class TrainingService {
                     this.store.dispatch(new UI.StopLoading());
                     this.store.dispatch(new Training.SetAvailableTrainings(exercises));
                 },
+                    // tslint:disable-next-line:no-shadowed-variable
                     error => {
                         this.uiService.showSnackBar('Fetching Excerises failed, please try again later', null, 3000);
                         // this.uiService.loadingStateChanged.next(false);
@@ -99,6 +100,7 @@ export class TrainingService {
             .valueChanges()
             .subscribe((exercises: Exercise[]) => {
               this.store.dispatch(new Training.SetFinishedTrainings(exercises));
+            // tslint:disable-next-line:no-shadowed-variable
             }, error => {
                 console.log(error);
             }));

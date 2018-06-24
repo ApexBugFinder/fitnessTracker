@@ -1,11 +1,9 @@
-// import { Subject } from 'rxjs/Subject';
+
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class UIService {
-    // not needed because using the redux pattern
-    // loadingStateChanged = new Subject<boolean>();
 
     constructor(private snackbar: MatSnackBar) {}
 

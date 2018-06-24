@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Exercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
-import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import * as fromTraining from '../training.reducer';
 

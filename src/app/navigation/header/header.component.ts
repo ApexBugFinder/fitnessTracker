@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
 import { Observable } from 'rxjs/Observable';
@@ -17,7 +16,6 @@ export class HeaderComponent implements OnInit {
   isAuth$: Observable<boolean>;
   authSubscription: Subscription;
   constructor(private authService: AuthService,
-              private router: Router,
               private store: Store<fromRoot.State>) { }
 
   ngOnInit() {

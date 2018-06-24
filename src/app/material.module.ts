@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatSidenav, 
-          MatListModule, MatTabsModule, MatCardModule, MatSelectModule, MatProgressSpinnerModule, 
-          MatDialogModule, MatSortModule, MatPaginator, MatPaginatorModule, MatSnackBarModule,
-          MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule, 
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule,
+          MatListModule, MatTabsModule, MatCardModule, MatSelectModule, MatProgressSpinnerModule,
+          MatDialogModule, MatSortModule, MatPaginatorModule, MatSnackBarModule,
+          MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule,
           MatTableModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -12,7 +12,7 @@ import {  } from '@angular/material';
 
 @NgModule({
   imports: [
-    MatButtonModule, 
+    MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
@@ -27,8 +27,8 @@ import {  } from '@angular/material';
     MatCardModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatDialogModule, 
-    MatTableModule, 
+    MatDialogModule,
+    MatTableModule,
     MatSortModule,
     MatPaginatorModule,
     MatSnackBarModule
