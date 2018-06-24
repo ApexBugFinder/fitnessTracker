@@ -21,10 +21,8 @@ export class TrainingService {
     ];
 
     private fbSubs: Subscription[] = [];
-    exerciseChanged = new Subject<Exercise>();
-    exercisesChanged = new Subject<Exercise[]>();
+
     finishedExercisesChanged = new Subject<Exercise[]>();
-    private runningExercise: Exercise;
 
     constructor(private dB: AngularFirestore,
                 private uiService: UIService,
@@ -58,9 +56,8 @@ export class TrainingService {
                     // tslint:disable-next-line:no-shadowed-variable
                     error => {
                         this.uiService.showSnackBar('Fetching Excerises failed, please try again later', null, 3000);
-                        // this.uiService.loadingStateChanged.next(false);
                         this.store.dispatch(new UI.StopLoading());
-                        this.exercisesChanged.next(null);
+
                         console.log(error);
                     }));
     }
